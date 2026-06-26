@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Projects | Md. Sadman Al Islam Shabab</title>
+    <meta name="description" content="Selected portfolio projects with details on design, engineering, and outcomes." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background-orb orb-one"></div>
+    <div class="background-orb orb-two"></div>
+
+    <header class="site-header">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">S</span>
+        <span>Md. Sadman Al Islam Shabab</span>
+      </a>
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="theme-toggle" type="button" aria-label="Switch theme">
+        <span class="theme-toggle__icon">☀</span>
+      </button>
+    </header>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Projects</p>
+          <h1>Selected work that blends sharp design with dependable engineering.</h1>
+          <p class="hero-text">
+            Each project reflects a focus on premium UX, polished product thinking, and modern engineering practices.
+          </p>
+        </div>
+
+        <div class="project-toolbar reveal">
+          <input id="project-search" type="search" placeholder="Search projects" />
+          <div class="filter-chips" aria-label="Project filters">
+            <button class="chip active" data-filter="all">All</button>
+            <button class="chip" data-filter="Full Stack">Full Stack</button>
+            <button class="chip" data-filter="Machine Learning">Machine Learning</button>
+            <button class="chip" data-filter="NLP">NLP</button>
+            <button class="chip" data-filter="Networking">Networking</button>
+          </div>
+        </div>
+
+        <div id="project-list" class="projects-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© <span id="year"></span> Md. Sadman Al Islam Shabab. Crafted with care.</p>
+    </footer>
+
+    <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
