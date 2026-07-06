@@ -3,7 +3,6 @@ const siteNav = document.querySelector('.site-nav');
 const year = document.getElementById('year');
 const header = document.querySelector('.site-header');
 const backToTop = document.querySelector('.back-to-top');
-const revealItems = document.querySelectorAll('.reveal');
 const typedText = document.querySelector('.typed-text');
 const themeToggle = document.querySelector('.theme-toggle');
 const themeIcon = document.querySelector('.theme-toggle__icon');
@@ -12,8 +11,24 @@ const successMessage = document.querySelector('.form-success');
 const projectList = document.getElementById('project-list');
 const searchInput = document.getElementById('project-search');
 const filterButtons = document.querySelectorAll('.chip');
+const transitionOverlay = document.createElement('div');
+transitionOverlay.className = 'page-transition';
+document.body.appendChild(transitionOverlay);
 
-const roles = ['responsive web applications.', 'practical software solutions.', 'modern digital experiences.'];
+['one', 'two', 'three'].forEach((className) => {
+  const wave = document.createElement('div');
+  wave.className = `ambient-wave ${className}`;
+  document.body.appendChild(wave);
+});
+
+const playTransition = (direction) => {
+  transitionOverlay.classList.remove('enter', 'exit');
+  void transitionOverlay.offsetWidth;
+  transitionOverlay.classList.add(direction);
+  window.setTimeout(() => transitionOverlay.classList.remove(direction), direction === 'enter' ? 900 : 700);
+};
+
+const roles = ['thoughtful digital products.', 'premium web experiences.', 'modern solutions with clarity.'];
 let roleIndex = 0;
 let charIndex = 0;
 let isDeleting = false;
@@ -117,6 +132,7 @@ const typeLoop = () => {
 };
 
 typeLoop();
+playTransition('enter');
 
 if (year) {
   year.textContent = new Date().getFullYear();
@@ -136,26 +152,38 @@ if (menuToggle && siteNav) {
   });
 }
 
+document.querySelectorAll('a[href]').forEach((link) => {
+  const href = link.getAttribute('href');
+  if (!href || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:') || link.target === '_blank' || link.hasAttribute('download')) {
+    return;
+  }
+
+  const isExternal = /^(https?:)?\/\//i.test(href);
+  if (isExternal) {
+    return;
+  }
+
+  link.addEventListener('click', (event) => {
+    const currentPath = window.location.pathname.replace(/\/$/, '');
+    const targetPath = new URL(href, window.location.href).pathname.replace(/\/$/, '');
+
+    if (currentPath === targetPath) {
+      return;
+    }
+
+    event.preventDefault();
+    window.setTimeout(() => {
+      window.location.href = link.href;
+    }, 150);
+  });
+});
+
 if (themeToggle) {
   themeToggle.addEventListener('click', () => {
     const nextTheme = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
     applyTheme(nextTheme);
   });
 }
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  },
-  { threshold: 0.15 }
-);
-
-revealItems.forEach((item) => revealObserver.observe(item));
 
 const renderProjects = () => {
   if (!projectList) return;
@@ -193,7 +221,6 @@ const renderProjects = () => {
     )
     .join('');
 
-  projectList.querySelectorAll('.project-card').forEach((item) => revealObserver.observe(item));
 };
 
 filterButtons.forEach((button) => {
