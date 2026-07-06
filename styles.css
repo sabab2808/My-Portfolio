@@ -159,16 +159,20 @@ body::after {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 24px;
-  margin: 0 auto;
+  padding: 18px 24px;
+  margin: 16px auto 0;
   max-width: 1200px;
-  backdrop-filter: blur(18px);
-  transition: background 180ms ease, box-shadow 180ms ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  backdrop-filter: blur(20px);
+  background: rgba(5, 8, 22, 0.72);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
+  transition: transform 180ms ease, background 180ms ease, box-shadow 180ms ease;
 }
 
 .site-header.scrolled {
-  background: color-mix(in srgb, var(--bg-elevated) 88%, transparent);
-  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.12);
+  background: rgba(7, 10, 24, 0.9);
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
 }
 
 .brand {
@@ -404,7 +408,12 @@ h1 .typed-text {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), var(--accent-2));
   color: white;
-  box-shadow: 0 10px 30px rgba(91, 108, 255, 0.24);
+  box-shadow: 0 14px 34px rgba(91, 108, 255, 0.28);
+}
+
+.btn:hover,
+.btn:focus-visible {
+  box-shadow: 0 12px 28px rgba(8, 12, 24, 0.2);
 }
 
 .btn-secondary {
@@ -515,11 +524,11 @@ h1 .typed-text {
 .project-card,
 .contact-card,
 .form-card {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  box-shadow: var(--shadow);
-  border-radius: 24px;
-  backdrop-filter: blur(20px);
+  background: linear-gradient(140deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 70px rgba(4, 8, 20, 0.26);
+  border-radius: 26px;
+  backdrop-filter: blur(24px);
   position: relative;
   overflow: hidden;
   isolation: isolate;
@@ -625,6 +634,16 @@ h1 .typed-text {
   margin-bottom: 24px;
   padding-left: 16px;
   border-left: 2px solid rgba(123, 140, 255, 0.35);
+  position: relative;
+}
+
+.section-heading::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(123, 140, 255, 0.4), transparent);
+  opacity: 0.7;
 }
 
 .feature-strip {
@@ -686,9 +705,9 @@ h1 .typed-text {
   gap: 20px;
   padding: 28px;
   border-radius: 30px;
-  border: 1px solid var(--border);
-  background: linear-gradient(135deg, rgba(123, 140, 255, 0.12), rgba(54, 209, 196, 0.08));
-  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,0.12);
+  background: linear-gradient(135deg, rgba(123, 140, 255, 0.16), rgba(54, 209, 196, 0.09));
+  box-shadow: 0 20px 60px rgba(4, 8, 20, 0.24);
 }
 
 .signature-copy h2 {
