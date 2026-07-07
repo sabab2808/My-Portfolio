@@ -40,7 +40,7 @@ const projects = [
     title: 'HostelMania',
     description: 'A full-stack hostel food management platform that simplifies food ordering and canteen operations for hostel students and teachers.',
     category: 'Full Stack',
-    tags: ['Personal Project', 'Full Stack'],
+    tags: ['Personal Project', 'PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS'],
     status: 'Final Year Project',
     date: '2025',
     features: ['Secure authentication', 'Role-based access control', 'Order tracking', 'Payment integration', 'Responsive design'],
