@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume | Md. Sadman Al Islam Shabab</title>
+    <meta name="description" content="Resume and CV of Md. Sadman Al Islam Shabab — CSE student and full-stack developer." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="resume">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
+
+    <div id="site-header"></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-head reveal is-visible">
+          <p class="eyebrow">Resume</p>
+          <h1>A complete look at my education, experience, and skills.</h1>
+          <p class="hero-text">Formatted for quick scanning, or export it as text or a PDF for applications.</p>
+        </div>
+
+        <div class="resume-actions reveal is-visible" style="margin-bottom: 24px;">
+          <a class="btn btn-primary" href="assets/resume.txt" download>Download as .txt</a>
+          <button class="btn btn-secondary" type="button" data-print>Print / Save as PDF</button>
+          <a class="btn btn-ghost" href="contact.html">Contact me instead &rarr;</a>
+        </div>
+
+        <div class="resume-shell reveal is-visible">
+          <div class="resume-top">
+            <div>
+              <h2 style="font-family: var(--font-display); font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 600; margin: 0 0 6px; border: none; padding: 0; text-transform: none; letter-spacing: normal; color: var(--ink);">Md. Sadman Al Islam Shabab</h2>
+              <p>Computer Science &amp; Engineering Student — Full Stack Web Developer</p>
+            </div>
+            <div class="resume-contact">
+              <a href="mailto:shabab23105101104@diu.edu.bd">shabab23105101104@diu.edu.bd</a>
+              <a href="https://www.linkedin.com/in/crypto28/" target="_blank" rel="noreferrer">linkedin.com/in/crypto28</a>
+              <a href="https://github.com/sabab2808" target="_blank" rel="noreferrer">github.com/sabab2808</a>
+              <span>Daffodil International University</span>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Profile</h2>
+            <p style="color: var(--muted);">
+              Computer Science and Engineering student with a strong interest in software engineering,
+              web development, backend systems, and product-focused problem solving. Focused on full-stack
+              development, backend systems, database management, and modern web technologies, with active
+              involvement in technology communities and leadership activities.
+            </p>
+          </div>
+
+          <div class="resume-block">
+            <h2>Career objective</h2>
+            <p style="color: var(--muted);">
+              To begin my career as a software engineer where I can apply my knowledge of programming,
+              web development, databases, and software engineering principles to build efficient and
+              scalable applications.
+            </p>
+          </div>
+
+          <div class="resume-block">
+            <h2>Technical skills</h2>
+            <div class="resume-tag-row">
+              <span>JavaScript</span><span>TypeScript</span><span>Python</span><span>SQL</span>
+              <span>HTML5 / CSS3</span><span>React</span><span>Next.js</span><span>Node.js</span>
+              <span>Express.js</span><span>MongoDB</span><span>MySQL</span><span>Git &amp; GitHub</span>
+              <span>Vercel / Netlify / Render</span><span>UI/UX design</span>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Experience</h2>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Full Stack Developer — HostelMania</strong>
+                <span>2025 — Present</span>
+              </div>
+              <p>Designed and developed a full-stack hostel food management system for my final year project, covering frontend, backend APIs, database integration, authentication, role-based access, ordering flow, and payment integration.</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Executive Member — Computer &amp; Programming Club</strong>
+                <span>2024 — Present</span>
+              </div>
+              <p>Contributed to organizing programming and technology-focused events, coordinating technical activities, and supporting student engagement and event operations.</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Host &amp; Volunteer — Bangladesh Olympiad in Informatics (BdOI)</strong>
+                <span>2024</span>
+              </div>
+              <p>Supported a national-level programming and informatics competition by assisting with event coordination and participant management.</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Organizing Committee Member — Hult Prize</strong>
+                <span>2024</span>
+              </div>
+              <p>Worked as Head of Marketing for a university-level innovation and entrepreneurship event, coordinating activities and contributing to successful execution.</p>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Education</h2>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>B.Sc. in Computer Science &amp; Engineering</strong>
+                <span>Jan 2023 — Dec 2026</span>
+              </div>
+              <p>Daffodil International University. Coursework: Data Structures &amp; Algorithms, OOP, DBMS, Software Engineering, Computer Networks, Operating Systems, Theory of Computation, Artificial Intelligence, Machine Learning, NLP, Web Engineering.</p>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Projects</h2>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>HostelMania — Full-stack hostel food management platform</strong>
+                <span>2025</span>
+              </div>
+              <p>PHP, MySQL, JavaScript, HTML, CSS. github.com/sabab2808/HostelMania2.0</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Computer Graphics Project — 2D space shooting game</strong>
+                <span>2026</span>
+              </div>
+              <p>C++, OpenGL/GLUT. github.com/sabab2808/Computer-Graphics-Project</p>
+            </div>
+            <div class="resume-entry">
+              <div class="resume-entry-head">
+                <strong>Machine Learning &amp; NLP coursework</strong>
+                <span>2026</span>
+              </div>
+              <p>Preprocessing, feature extraction, model training, evaluation, and text analysis.</p>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Achievements</h2>
+            <div class="resume-entry">
+              <p>Finalist — DIU Takeoff Programming Contest (Top 10)</p>
+            </div>
+            <div class="resume-entry">
+              <p>Finalist — DIU Unlock The Algorithm Contest (Top 20)</p>
+            </div>
+            <div class="resume-entry">
+              <p>Completed UI/UX Design Workshop &amp; Training, and Technology &amp; Programming Workshops</p>
+            </div>
+          </div>
+
+          <div class="resume-block">
+            <h2>Soft skills</h2>
+            <div class="resume-tag-row">
+              <span>Problem solving</span><span>Leadership</span><span>Communication</span>
+              <span>Public speaking</span><span>Event management</span><span>Time management</span><span>Teamwork</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

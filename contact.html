@@ -4,92 +4,149 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact | Md. Sadman Al Islam Shabab</title>
-    <meta name="description" content="Contact details and a functional contact form for the portfolio website." />
+    <meta name="description" content="Contact details and a message form to reach Md. Sadman Al Islam Shabab." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="contact">
-    <div class="background-orb orb-one"></div>
-    <div class="background-orb orb-two"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
 
     <div id="site-header"></div>
 
     <main class="page-shell">
-      <section class="section contact-grid">
-        <div class="contact-card reveal">
+      <section class="section">
+        <div class="section-head reveal is-visible">
           <p class="eyebrow">Contact</p>
-          <h1>Let’s create something exceptional together.</h1>
-          <p>
-            Whether you need a polished web application, a backend solution, or a professional portfolio experience, I’m available for thoughtful collaborations, internships, freelance projects, and opportunities in software development.
+          <h1>Let's create something exceptional together.</h1>
+          <p class="hero-text">
+            Whether you need a polished web application, a backend solution, or a professional
+            portfolio experience, I'm available for thoughtful collaborations, internships,
+            freelance projects, and opportunities in software development.
           </p>
-          <div class="contact-details">
-            <a href="mailto:shabab.cse@diu.edu.bd">shabab23105101104@diu.edu.bd</a>
-            <span>Open to remote and on-site opportunities</span>
-          </div>
-          <div class="hero-actions">
-            <a class="btn btn-primary magnetic" href="mailto:shabab23105101104@diu.edu.bd">Email Me</a>
-            <a class="btn btn-secondary magnetic" href="assets/resume.txt" download>Download Resume</a>
-          </div>
-
-          <div class="contact-highlight">
-            <p class="eyebrow">Availability</p>
-            <h3>Open for internships, freelance work, and thoughtful product collaborations.</h3>
-          </div>
-
-          <div class="social-media-section">
-            <p class="eyebrow">Follow & connect</p>
-            <div class="social-media-grid">
-              <a class="social-link-card" href="https://www.facebook.com/CRYPT00/" target="_blank" rel="noreferrer">
-                <span class="social-icon">f</span>
-                <span>Facebook</span>
-              </a>
-              <a class="social-link-card" href="https://www.instagram.com/sabab_sadman/" target="_blank" rel="noreferrer">
-                <span class="social-icon">◎</span>
-                <span>Instagram</span>
-              </a>
-              <a class="social-link-card" href="https://github.com/sabab2808" target="_blank" rel="noreferrer">
-                <span class="social-icon">⌘</span>
-                <span>GitHub</span>
-              </a>
-              <a class="social-link-card" href="mailto:sadmansabab2808@gmail.com">
-                <span class="social-icon">@</span>
-                <span>Email</span>
-              </a>
-            </div>
-          </div>
         </div>
 
-        <div class="form-card reveal">
-          <div class="form-panel-header">
-            <p class="eyebrow">Send a message</p>
-            <h3>Tell me about your idea.</h3>
+        <div class="contact-console-grid">
+          <!-- REQUEST: the actual working form, styled as a JSON payload -->
+          <div class="panel console-panel reveal is-visible">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <span class="console-bar-label">POST /contact</span>
+            </div>
+
+            <form class="console-form" data-contact-form>
+              <div class="console-json">
+                <span class="json-brace">{</span>
+
+                <div class="json-field">
+                  <label for="name">"name"<span class="json-colon">:</span></label>
+                  <input id="name" name="name" type="text" placeholder="&quot;Your name&quot;" autocomplete="name" />
+                </div>
+
+                <div class="json-field">
+                  <label for="email">"email"<span class="json-colon">:</span></label>
+                  <input id="email" name="email" type="email" placeholder="&quot;you@example.com&quot;" autocomplete="email" />
+                </div>
+
+                <div class="json-field json-field--area">
+                  <label for="message">"message"<span class="json-colon">:</span></label>
+                  <textarea id="message" name="message" placeholder="&quot;Tell me about your idea or project...&quot;"></textarea>
+                </div>
+
+                <span class="json-brace">}</span>
+              </div>
+
+              <div class="console-form-footer">
+                <button class="btn btn-primary console-send" type="submit">
+                  <span class="console-prompt">$</span> send --message
+                </button>
+                <p class="form-status" role="status"></p>
+              </div>
+            </form>
           </div>
-          <form>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Md. Sadman Al Islam Shabab" />
+
+          <!-- RESPONSE: contact channels, read like a terminal / API response -->
+          <div class="panel console-panel reveal is-visible">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <span class="console-bar-label">GET /channels</span>
             </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input id="email" name="email" type="email" placeholder="you@example.com" />
+
+            <div class="console-profile">
+              <div class="hero-photo">
+                <img
+                  src="assets/profile.png"
+                  alt="Md. Sadman Al Islam Shabab"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                />
+                <div class="hero-photo-fallback">MS</div>
+              </div>
+              <div>
+                <strong class="console-profile-name">Md. Sadman Al Islam Shabab</strong>
+                <span class="console-profile-status"><span class="status-dot"></span>Available for internships &amp; full-stack roles</span>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" placeholder="Tell me about your idea or project"></textarea>
+
+            <div class="endpoint-list">
+              <button class="endpoint-row" type="button" data-copy="shabab23105101104@diu.edu.bd">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/email</span>
+                <span class="endpoint-value">shabab23105101104@diu.edu.bd</span>
+                <span class="endpoint-action">copy</span>
+              </button>
+              <a class="endpoint-row" href="https://www.linkedin.com/in/crypto28/" target="_blank" rel="noreferrer">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/linkedin</span>
+                <span class="endpoint-value">linkedin.com/in/crypto28</span>
+                <span class="endpoint-action">open &rarr;</span>
+              </a>
+              <a class="endpoint-row" href="https://github.com/sabab2808" target="_blank" rel="noreferrer">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/github</span>
+                <span class="endpoint-value">github.com/sabab2808</span>
+                <span class="endpoint-action">open &rarr;</span>
+              </a>
+              <a class="endpoint-row" href="https://www.facebook.com/CRYPT00/" target="_blank" rel="noreferrer">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/facebook</span>
+                <span class="endpoint-value">facebook.com/CRYPT00</span>
+                <span class="endpoint-action">open &rarr;</span>
+              </a>
+              <a class="endpoint-row" href="https://www.instagram.com/sabab_sadman/" target="_blank" rel="noreferrer">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/instagram</span>
+                <span class="endpoint-value">instagram.com/sabab_sadman</span>
+                <span class="endpoint-action">open &rarr;</span>
+              </a>
+              <a class="endpoint-row" href="assets/resume.txt" download>
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/resume</span>
+                <span class="endpoint-value">download as .txt</span>
+                <span class="endpoint-action">&darr;</span>
+              </a>
             </div>
-            <button class="btn btn-primary magnetic" type="submit">Send Message</button>
-            <p class="form-success" role="status"></p>
-          </form>
+
+            <div class="console-response-note">
+              <span class="json-comment">// response time: usually within a day or two</span>
+            </div>
+          </div>
         </div>
       </section>
     </main>
 
     <div id="site-footer"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

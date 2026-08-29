@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 | Md. Sadman Al Islam Shabab</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="404">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
+
+    <div id="site-header"></div>
+
+    <main class="page-shell">
+      <div class="error-shell">
+        <span class="eyebrow">404 / not found</span>
+        <div class="error-code">404</div>
+        <h1 style="max-width: 620px;">This route doesn't exist in the system.</h1>
+        <p class="hero-text" style="max-width: 560px;">
+          The page you're looking for may have been moved, renamed, or never built.
+          Here are a few working routes instead.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="index.html">Back to home</a>
+          <a class="btn btn-secondary" href="projects.html">See projects</a>
+          <a class="btn btn-ghost" href="contact.html">Contact me</a>
+        </div>
+      </div>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

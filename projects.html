@@ -4,55 +4,73 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Projects | Md. Sadman Al Islam Shabab</title>
-    <meta name="description" content="Selected portfolio projects with details on design, engineering, and outcomes." />
+    <meta name="description" content="Selected projects by Md. Sadman Al Islam Shabab spanning full-stack web development, computer graphics, machine learning, and NLP." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="projects">
-    <div class="background-orb orb-one"></div>
-    <div class="background-orb orb-two"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
 
     <div id="site-header"></div>
 
     <main class="page-shell">
       <section class="section">
-        <div class="section-heading reveal">
+        <div class="section-head reveal is-visible">
           <p class="eyebrow">Projects</p>
-          <h1>Selected work that blends sharp design with dependable engineering.</h1>
+          <h1>Selected work from full-stack builds, coursework, and personal practice.</h1>
           <p class="hero-text">
-            Each project reflects a focus on premium UX, polished product thinking, and modern engineering practices.
+            A mix of shipped academic projects and personal practice — spanning full-stack web
+            apps, computer graphics, machine learning, and NLP. Filter by category or search by
+            technology.
           </p>
         </div>
 
-        <div class="project-highlight reveal">
-          <div>
-            <p class="eyebrow">Featured focus</p>
-            <h3>Practical builds with strong design language and clear purpose.</h3>
+        <div class="project-toolbar reveal is-visible">
+          <div class="project-search">
+            <input id="project-search" type="text" placeholder="Search projects, tech, or category" aria-label="Search projects" />
           </div>
-          <p>I enjoy creating projects that balance technical depth with a polished, modern experience—especially in web development, full-stack product thinking, and intelligent solutions.</p>
-        </div>
-
-        <div class="project-toolbar reveal">
-          <input id="project-search" type="search" placeholder="Search projects" />
-          <div class="filter-chips" aria-label="Project filters">
+          <div class="filter-chips">
             <button class="chip active" data-filter="all">All</button>
             <button class="chip" data-filter="Full Stack">Full Stack</button>
+            <button class="chip" data-filter="Game Development">Game Dev</button>
             <button class="chip" data-filter="Machine Learning">Machine Learning</button>
             <button class="chip" data-filter="NLP">NLP</button>
-            <button class="chip" data-filter="Networking">Networking</button>
+            <button class="chip" data-filter="Frontend">Frontend</button>
           </div>
         </div>
 
-        <div id="project-list" class="projects-grid"></div>
+        <div class="project-grid" id="project-list"></div>
+      </section>
+
+      <section class="section">
+        <div class="closing-cta reveal">
+          <div class="closing-copy">
+            <p class="eyebrow">Something to build</p>
+            <h2>Have a project in mind? Let's talk it through.</h2>
+            <p>I'm open to internships, freelance work, and collaborations that need a dependable full-stack build.</p>
+          </div>
+          <div class="closing-actions">
+            <a class="btn btn-primary" href="contact.html">Start a conversation</a>
+            <a class="btn btn-secondary" href="https://github.com/sabab2808" target="_blank" rel="noreferrer">GitHub profile</a>
+          </div>
+        </div>
       </section>
     </main>
 
     <div id="site-footer"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
     <script src="script.js"></script>
   </body>
 </html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HostelMania Case Study | Md. Sadman Al Islam Shabab</title>
+    <meta name="description" content="A case study on HostelMania, a full-stack hostel food management platform built by Md. Sadman Al Islam Shabab." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="projects">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
+
+    <div id="site-header"></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-head reveal is-visible" style="max-width: 760px;">
+          <p class="eyebrow"><a href="projects.html" style="color: inherit; text-decoration: none;">Projects</a> / Case study</p>
+          <h1>HostelMania — a full-stack hostel food management platform.</h1>
+          <p class="hero-text">
+            A final-year project built to replace manual hostel canteen operations with a proper
+            ordering system — covering authentication, role-based access, order tracking, and payments,
+            end to end.
+          </p>
+          <div class="case-hero-meta">
+            <span>Full Stack</span>
+            <span>PHP · MySQL · JavaScript</span>
+            <span>Final Year Project · 2025</span>
+          </div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="https://github.com/sabab2808/HostelMania2.0" target="_blank" rel="noreferrer">View source on GitHub</a>
+            <a class="btn btn-secondary" href="projects.html">&larr; Back to projects</a>
+          </div>
+        </div>
+
+        <div class="case-meta-grid reveal is-visible">
+          <div><span>Role</span><strong>Solo full-stack developer</strong></div>
+          <div><span>Timeline</span><strong>One academic semester</strong></div>
+          <div><span>Users</span><strong>Hostel students &amp; canteen staff</strong></div>
+          <div><span>Status</span><strong>Completed, final year project</strong></div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-label reveal">
+          <span class="step">01</span>
+          <h2 style="margin: 0;">The problem</h2>
+        </div>
+        <p class="hero-text reveal" style="max-width: 720px;">
+          Hostel canteens at the university were running food ordering manually — paper lists,
+          verbal requests, and no clear record of who ordered what or paid for it. That meant
+          long queues, mistakes in orders, and no easy way for canteen staff to plan food
+          preparation ahead of time. Students needed a simple way to order and pay online;
+          staff needed a dashboard to manage and fulfill those orders reliably.
+        </p>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-label reveal">
+          <span class="step">02</span>
+          <h2 style="margin: 0;">The approach</h2>
+        </div>
+        <div class="case-layout">
+          <div class="reveal">
+            <p class="hero-text">
+              I designed HostelMania around a clear separation of concerns: a student-facing
+              ordering interface, a staff dashboard for managing orders, and a backend that
+              handles authentication, order state, and payments consistently across both.
+            </p>
+            <ul class="spec-list" style="margin-top: 20px;">
+              <li><span>Auth</span><strong>Role-based login separating students and canteen staff, so each sees only what they need.</strong></li>
+              <li><span>Data</span><strong>A relational MySQL schema for users, menu items, and orders, keeping order history queryable and accurate.</strong></li>
+              <li><span>Payments</span><strong>Integrated payment handling so orders are confirmed only once payment is settled.</strong></li>
+              <li><span>Interface</span><strong>A responsive frontend so ordering works as well from a phone in a hostel room as from a desktop.</strong></li>
+            </ul>
+          </div>
+          <div class="case-figure reveal">
+            <div class="console-bar">
+              <span></span><span></span><span></span>
+              <span class="console-bar-label">architecture.map</span>
+            </div>
+            <div class="console-canvas-wrap">
+              <canvas id="case-graph"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-label reveal">
+          <span class="step">03</span>
+          <h2 style="margin: 0;">Key features</h2>
+        </div>
+        <div class="grid-3">
+          <article class="panel reveal">
+            <h3>Secure authentication</h3>
+            <p>Role-based login for students and canteen staff, keeping each experience separate and appropriate.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Order tracking</h3>
+            <p>Real-time order states so students know exactly where their order stands and staff know what to prepare next.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Payment integration</h3>
+            <p>Orders are tied to confirmed payment, removing the ambiguity of manual, cash-based tracking.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Role-based access control</h3>
+            <p>Canteen staff get a management view; students get an ordering view — no overlap, no confusion.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Responsive design</h3>
+            <p>Built mobile-first, since most students would be ordering from their phones between classes.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Admin dashboard</h3>
+            <p>A clear operational view of incoming orders, so canteen staff can plan preparation ahead of time.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-label reveal">
+          <span class="step">04</span>
+          <h2 style="margin: 0;">Outcome &amp; what I learned</h2>
+        </div>
+        <div class="case-outcome-grid">
+          <article class="panel reveal">
+            <h3>Shipped end to end</h3>
+            <p>Took the project from schema design through to a working, deployable application as a solo developer.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Real constraints, real tradeoffs</h3>
+            <p>Learned to balance feature scope against a semester timeline — prioritizing ordering and payment flow over nice-to-haves.</p>
+          </article>
+          <article class="panel reveal">
+            <h3>Full-stack fluency</h3>
+            <p>Strengthened my ability to move across frontend, backend, and database layers on the same problem without losing consistency.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="closing-cta reveal">
+          <div class="closing-copy">
+            <p class="eyebrow">Next steps</p>
+            <h2>Want to see how I'd approach a similar system?</h2>
+            <p>I'm happy to walk through the schema, the auth flow, or any part of the build in more detail.</p>
+          </div>
+          <div class="closing-actions">
+            <a class="btn btn-primary" href="contact.html">Get in touch</a>
+            <a class="btn btn-secondary" href="https://github.com/sabab2808/HostelMania2.0" target="_blank" rel="noreferrer">View source</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

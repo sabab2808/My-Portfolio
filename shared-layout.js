@@ -3,27 +3,48 @@
   const footerRoot = document.getElementById('site-footer');
   const page = document.body?.dataset?.page || 'home';
 
+  const navItems = [
+    { href: 'index.html', label: 'Home', key: 'home' },
+    { href: 'about.html', label: 'About', key: 'about' },
+    { href: 'projects.html', label: 'Projects', key: 'projects' },
+    { href: 'resume.html', label: 'Resume', key: 'resume' },
+    { href: 'contact.html', label: 'Contact', key: 'contact' },
+  ];
+
+  window.__siteNav = navItems;
+  window.__sitePage = page;
+
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress';
+  progressBar.innerHTML = '<div class="scroll-progress__fill"></div>';
+  document.body.prepend(progressBar);
+
   if (headerRoot) {
     headerRoot.innerHTML = `
       <header class="site-header">
         <a class="brand" href="index.html">
-          <span class="brand-mark">
-            <img src="assets/photo-1.jpg" alt="Md. Sadman Al Islam Shabab" />
-          </span>
-          <span>Md. Sadman Al Islam Shabab</span>
+          <span class="brand-mark">MS</span>
+          <span class="brand-name">Sadman Shabab<span>Full Stack Developer</span></span>
         </a>
-        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
         <nav class="site-nav" aria-label="Primary navigation">
-          <a href="index.html" class="${page === 'home' ? 'active' : ''}">Home</a>
-          <a href="about.html" class="${page === 'about' ? 'active' : ''}">About</a>
-          <a href="projects.html" class="${page === 'projects' ? 'active' : ''}">Projects</a>
-          <a href="contact.html" class="${page === 'contact' ? 'active' : ''}">Contact</a>
+          ${navItems
+            .map(
+              (item) =>
+                `<a href="${item.href}" class="nav-link${item.key === page ? ' active' : ''}">${item.label}</a>`
+            )
+            .join('')}
         </nav>
-        <button class="theme-toggle" type="button" aria-label="Switch theme">
-          <span class="theme-toggle__icon">☀</span>
-        </button>
+        <div class="header-actions">
+          <button class="cmdk-trigger" type="button" aria-label="Open command menu">
+            <span>Search</span><kbd>&#8984;K</kbd>
+          </button>
+          <button class="theme-toggle" type="button" aria-label="Switch theme">
+            <span class="theme-toggle__icon">&#9788;</span>
+          </button>
+          <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
       </header>
     `;
   }
@@ -31,19 +52,32 @@
   if (footerRoot) {
     footerRoot.innerHTML = `
       <footer class="site-footer">
-        <div class="footer-cta reveal">
-          <div>
-            <p class="eyebrow">Ready when you are</p>
-            <p>Let’s build something memorable.</p>
+        <div class="footer-inner">
+          <div class="footer-cta">
+            <p>Currently open to internships and full-stack roles.</p>
+            <a class="btn btn-secondary" href="contact.html">Get in touch</a>
           </div>
-          <a class="btn btn-primary magnetic" href="contact.html">Contact Me</a>
-        </div>
-        <div class="footer-meta reveal">
-          <span>Crafted with intention</span>
-          <span>© <span id="year"></span> CRYPT000</span>
+          <div class="footer-meta">
+            <span>&copy; <span id="year"></span> Md. Sadman Al Islam Shabab</span>
+            <span>Built from scratch, no templates</span>
+          </div>
         </div>
       </footer>
-      <button class="back-to-top" type="button" aria-label="Back to top">↑</button>
+      <button class="back-to-top" type="button" aria-label="Back to top">&#8593;</button>
     `;
   }
+
+  const currentFile = navItems.find((item) => item.key === page)?.href || `${page}.html`;
+
+  const statusBar = document.createElement('div');
+  statusBar.className = 'status-bar';
+  statusBar.innerHTML = `
+    <span class="status-bar-item status-bar-page">
+      <span class="status-dot"></span>${currentFile}
+    </span>
+    <span class="status-bar-item status-bar-clock" data-clock></span>
+    <span class="status-bar-spacer"></span>
+    <span class="status-bar-item status-bar-hint">Press <kbd>&#8984;K</kbd> to search</span>
+  `;
+  document.body.appendChild(statusBar);
 })();

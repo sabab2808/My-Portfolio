@@ -4,30 +4,51 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About | Md. Sadman Al Islam Shabab</title>
-    <meta name="description" content="About the portfolio owner, their experience, values, and professional journey." />
+    <meta name="description" content="About Md. Sadman Al Islam Shabab — CSE student, full-stack developer, and his professional journey." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body data-page="about">
-    <div class="background-orb orb-one"></div>
-    <div class="background-orb orb-two"></div>
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
 
     <div id="site-header"></div>
 
     <main class="page-shell">
       <section class="section">
-        <div class="section-heading reveal">
-          <p class="eyebrow">About</p>
-          <h1>Computer Science & Engineering student building practical, polished digital solutions.</h1>
-          <p class="hero-text">
-            I am a Computer Science and Engineering student at Daffodil International University with a strong interest in software engineering, web development, backend systems, and product-focused problem solving. My journey in programming began with curiosity about how technology can solve real-world problems, and it has grown into a passion for building reliable and thoughtful applications.
-          </p>
+        <div class="about-intro">
+          <div class="about-photo-wrap reveal is-visible">
+            <div class="about-photo">
+              <img
+                src="assets/profile.png"
+                alt="Portrait of Md. Sadman Al Islam Shabab"
+                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+              />
+              <div class="about-photo-fallback">MS</div>
+            </div>
+            <span class="about-photo-tag"><span class="status-dot"></span>Available for hire</span>
+          </div>
+          <div class="section-head reveal is-visible" style="margin-bottom: 0;">
+            <p class="eyebrow">About</p>
+            <h1>Computer Science &amp; Engineering student building practical, polished digital solutions.</h1>
+            <p class="hero-text">
+              I am a Computer Science and Engineering student at Daffodil International University with a
+              strong interest in software engineering, web development, backend systems, and product-focused
+              problem solving. My journey in programming began with curiosity about how technology can solve
+              real-world problems, and it has grown into a passion for building reliable and thoughtful applications.
+            </p>
+          </div>
         </div>
 
-        <div class="stats-grid reveal">
+        <div class="stat-grid reveal">
           <div><strong>4+</strong><span>Projects built</span></div>
           <div><strong>3+</strong><span>Leadership roles</span></div>
           <div><strong>5+</strong><span>Technical skills</span></div>
@@ -36,22 +57,18 @@
       </section>
 
       <section class="section">
-        <div class="about-grid">
-          <article class="glass-card reveal">
+        <div class="grid-2">
+          <article class="panel reveal">
             <h3>My journey</h3>
-            <p>
-              I enjoy creating applications that combine clean design, efficient functionality, and a smooth user experience. My primary focus is full-stack development, backend systems, database management, and modern web technologies.
-            </p>
-            <p>
-              I also actively participate in technology communities and leadership activities, sharpening my teamwork, communication, public speaking, and problem-solving abilities.
-            </p>
+            <p>I enjoy creating applications that combine clean design, efficient functionality, and a smooth user experience. My primary focus is full-stack development, backend systems, database management, and modern web technologies.</p>
+            <p>I also actively participate in technology communities and leadership activities, sharpening my teamwork, communication, public speaking, and problem-solving abilities.</p>
           </article>
-          <article class="glass-card reveal">
-            <h3>Education & coursework</h3>
-            <ul class="timeline">
-              <li><span>Jan 2023 – Dec 2026</span><strong>B.Sc. in Computer Science & Engineering, Daffodil International University</strong></li>
-              <li><span>Department</span><strong>Computer Science & Engineering</strong></li>
-              <li><span>Relevant coursework</span><strong>Data Structures & Algorithms, OOP, DBMS, Software Engineering, Computer Networks, Operating Systems, Theory of Computation, Artificial Intelligence, Machine Learning, NLP, Web Engineering</strong></li>
+          <article class="panel reveal">
+            <h3>Education &amp; coursework</h3>
+            <ul class="spec-list">
+              <li><span>Jan 2023 – Dec 2026</span><strong>B.Sc. in Computer Science &amp; Engineering, Daffodil International University</strong></li>
+              <li><span>Department</span><strong>Computer Science &amp; Engineering</strong></li>
+              <li><span>Relevant coursework</span><strong>Data Structures &amp; Algorithms, OOP, DBMS, Software Engineering, Computer Networks, Operating Systems, Theory of Computation, Artificial Intelligence, Machine Learning, NLP, Web Engineering</strong></li>
             </ul>
           </article>
         </div>
@@ -65,15 +82,15 @@
             <p>I care about creating solutions that are not only functional but also feel calm, clean, and genuinely enjoyable to use.</p>
           </div>
           <div class="insight-grid">
-            <article class="glass-card">
+            <article class="panel">
               <h3>Product mindset</h3>
               <p>I think beyond code and focus on the experience, flow, and usefulness of the final product.</p>
             </article>
-            <article class="glass-card">
+            <article class="panel">
               <h3>Reliable execution</h3>
               <p>I value structured thinking, clean architecture, and steady progress over rushed shortcuts.</p>
             </article>
-            <article class="glass-card">
+            <article class="panel">
               <h3>Continuous growth</h3>
               <p>I constantly improve through real projects, technical learning, and collaboration with others.</p>
             </article>
@@ -82,16 +99,19 @@
       </section>
 
       <section class="section">
-        <div class="skills-grid">
-          <article class="glass-card reveal">
+        <div class="grid-3">
+          <article class="panel reveal">
+            <div class="icon3d" data-icon="orbit" aria-hidden="true"></div>
             <h3>Career objective</h3>
             <p>To begin my career as a software engineer where I can apply my knowledge of programming, web development, databases, and software engineering principles to build efficient and scalable applications.</p>
           </article>
-          <article class="glass-card reveal">
+          <article class="panel reveal">
+            <div class="icon3d" data-icon="icosa" aria-hidden="true"></div>
             <h3>Personal qualities</h3>
             <p>Curious, disciplined, collaborative, adaptive, and committed to continuous growth and quality work.</p>
           </article>
-          <article class="glass-card reveal">
+          <article class="panel reveal">
+            <div class="icon3d" data-icon="nodes" aria-hidden="true"></div>
             <h3>Soft skills</h3>
             <p>Problem solving, leadership, communication, public speaking, event management, time management, and teamwork.</p>
           </article>
@@ -99,48 +119,64 @@
       </section>
 
       <section class="section">
-        <div class="section-heading reveal">
+        <div class="section-head reveal">
           <p class="eyebrow">Technical depth</p>
           <h2>Focused on building polished, scalable products with confidence.</h2>
         </div>
-        <div class="skills-stack">
-          <article class="glass-card reveal">
+        <div class="grid-2">
+          <article class="panel reveal">
             <h3>Core engineering</h3>
             <div class="skill-item">
               <div class="skill-row"><span>HTML, CSS, JavaScript</span><strong>95%</strong></div>
-              <div class="skill-bar"><span style="--value: 95%"></span></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 95%"></span></div>
             </div>
             <div class="skill-item">
-              <div class="skill-row"><span>Node.js & Express</span><strong>88%</strong></div>
-              <div class="skill-bar"><span style="--value: 88%"></span></div>
+              <div class="skill-row"><span>Node.js &amp; Express</span><strong>88%</strong></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 88%"></span></div>
             </div>
             <div class="skill-item">
-              <div class="skill-row"><span>MongoDB & SQL</span><strong>84%</strong></div>
-              <div class="skill-bar"><span style="--value: 84%"></span></div>
+              <div class="skill-row"><span>MongoDB &amp; SQL</span><strong>84%</strong></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 84%"></span></div>
             </div>
           </article>
-          <article class="glass-card reveal">
-            <h3>Product & collaboration</h3>
+          <article class="panel reveal">
+            <h3>Product &amp; collaboration</h3>
             <div class="skill-item">
-              <div class="skill-row"><span>UI/UX & product thinking</span><strong>92%</strong></div>
-              <div class="skill-bar"><span style="--value: 92%"></span></div>
+              <div class="skill-row"><span>UI/UX &amp; product thinking</span><strong>92%</strong></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 92%"></span></div>
             </div>
             <div class="skill-item">
-              <div class="skill-row"><span>Leadership & events</span><strong>90%</strong></div>
-              <div class="skill-bar"><span style="--value: 90%"></span></div>
+              <div class="skill-row"><span>Leadership &amp; events</span><strong>90%</strong></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 90%"></span></div>
             </div>
             <div class="skill-item">
-              <div class="skill-row"><span>Problem solving & growth</span><strong>96%</strong></div>
-              <div class="skill-bar"><span style="--value: 96%"></span></div>
+              <div class="skill-row"><span>Problem solving &amp; growth</span><strong>96%</strong></div>
+              <div class="skill-track"><span class="skill-fill" style="--value: 96%"></span></div>
             </div>
           </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="closing-cta reveal">
+          <div class="closing-copy">
+            <p class="eyebrow">Let's build something</p>
+            <h2>Ready for a product that feels premium from the first click?</h2>
+            <p>I bring a calm process, strong execution, and a sharp eye for detail to every project.</p>
+          </div>
+          <div class="closing-actions">
+            <a class="btn btn-primary" href="contact.html">Start a conversation</a>
+            <a class="btn btn-secondary" href="projects.html">See my work</a>
+          </div>
         </div>
       </section>
     </main>
 
     <div id="site-footer"></div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
