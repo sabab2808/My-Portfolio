@@ -24,7 +24,7 @@
     headerRoot.innerHTML = `
       <header class="site-header">
         <a class="brand" href="index.html">
-          <img src="/assets/logo-2.png" alt="Md. Sadman Al Islam Shabab" class="brand-logo" />
+          <img src="assets/logo-2.png" alt="Md. Sadman Al Islam Shabab" class="brand-logo" />
           <span class="brand-name">Md. Sadman Al Islam Shabab<span>Full Stack Developer</span></span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
