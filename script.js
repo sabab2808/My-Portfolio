@@ -476,7 +476,7 @@ const projects = [
   {
     title: 'HostelMania',
     description:
-      'A full-stack hostel food management platform that simplifies food ordering and canteen operations for hostel students and staff.',
+      'A hostel food ordering system built solo, one semester, 2 user roles (student and staff) — from database schema through to a deployed application.',
     category: 'Full Stack',
     tags: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS'],
     status: 'Final Year Project',
@@ -654,7 +654,144 @@ if (form && successMessage) {
   });
 }
 
-/* ---------------- status bar clock ---------------- */
+/* ---------------- gallery carousel ---------------- */
+
+(function initGalleryCarousel() {
+  const console_ = document.querySelector('.gallery-console');
+  if (!console_) return;
+
+  const track = console_.querySelector('.gallery-track');
+  const slides = Array.from(console_.querySelectorAll('.gallery-slide'));
+  const prevBtn = console_.querySelector('.gallery-arrow--prev');
+  const nextBtn = console_.querySelector('.gallery-arrow--next');
+  const dotsWrap = console_.querySelector('.gallery-dots');
+  const viewport = console_.querySelector('.gallery-viewport');
+
+  if (!track || slides.length <= 1) {
+    if (prevBtn) prevBtn.style.display = 'none';
+    if (nextBtn) nextBtn.style.display = 'none';
+    return;
+  }
+
+  let index = 0;
+  let autoplayTimer = null;
+
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = `gallery-dot${i === 0 ? ' active' : ''}`;
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Go to photo ${i + 1}`);
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  const dots = Array.from(dotsWrap.querySelectorAll('.gallery-dot'));
+
+  function render() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+  }
+
+  function goTo(i) {
+    index = (i + slides.length) % slides.length;
+    render();
+  }
+
+  function next() {
+    goTo(index + 1);
+  }
+
+  function prev() {
+    goTo(index - 1);
+  }
+
+  function stopAutoplay() {
+    if (autoplayTimer) clearInterval(autoplayTimer);
+    autoplayTimer = null;
+  }
+
+  function startAutoplay() {
+    if (prefersReducedMotion) return;
+    stopAutoplay();
+    autoplayTimer = setInterval(next, 4500);
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    prev();
+    startAutoplay();
+  });
+  nextBtn?.addEventListener('click', () => {
+    next();
+    startAutoplay();
+  });
+
+  console_.addEventListener('mouseenter', stopAutoplay);
+  console_.addEventListener('mouseleave', startAutoplay);
+  console_.addEventListener('focusin', stopAutoplay);
+  console_.addEventListener('focusout', startAutoplay);
+
+  viewport.addEventListener('keydown', (event) => {
+    if (event.key === 'ArrowRight') {
+      event.preventDefault();
+      next();
+      startAutoplay();
+    } else if (event.key === 'ArrowLeft') {
+      event.preventDefault();
+      prev();
+      startAutoplay();
+    }
+  });
+
+  // swipe / drag support
+  let dragStartX = null;
+  let dragDeltaX = 0;
+
+  const onDragStart = (x) => {
+    dragStartX = x;
+    dragDeltaX = 0;
+    stopAutoplay();
+    track.style.transition = 'none';
+  };
+  const onDragMove = (x) => {
+    if (dragStartX === null) return;
+    dragDeltaX = x - dragStartX;
+    track.style.transform = `translateX(calc(-${index * 100}% + ${dragDeltaX}px))`;
+  };
+  const onDragEnd = () => {
+    if (dragStartX === null) return;
+    track.style.transition = '';
+    if (Math.abs(dragDeltaX) > viewport.clientWidth * 0.18) {
+      dragDeltaX < 0 ? next() : prev();
+    } else {
+      render();
+    }
+    dragStartX = null;
+    startAutoplay();
+  };
+
+  viewport.addEventListener('touchstart', (e) => onDragStart(e.touches[0].clientX), { passive: true });
+  viewport.addEventListener('touchmove', (e) => onDragMove(e.touches[0].clientX), { passive: true });
+  viewport.addEventListener('touchend', onDragEnd);
+
+  if (canHover) {
+    let mouseDown = false;
+    viewport.addEventListener('mousedown', (e) => {
+      mouseDown = true;
+      onDragStart(e.clientX);
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (mouseDown) onDragMove(e.clientX);
+    });
+    window.addEventListener('mouseup', () => {
+      if (mouseDown) onDragEnd();
+      mouseDown = false;
+    });
+  }
+
+  render();
+  startAutoplay();
+})();
 
 const clockEl = document.querySelector('[data-clock]');
 

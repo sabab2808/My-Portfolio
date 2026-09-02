@@ -7,6 +7,7 @@
     { href: 'index.html', label: 'Home', key: 'home' },
     { href: 'about.html', label: 'About', key: 'about' },
     { href: 'projects.html', label: 'Projects', key: 'projects' },
+    { href: 'notes.html', label: 'Notes', key: 'notes' },
     { href: 'resume.html', label: 'Resume', key: 'resume' },
     { href: 'contact.html', label: 'Contact', key: 'contact' },
   ];
@@ -23,8 +24,8 @@
     headerRoot.innerHTML = `
       <header class="site-header">
         <a class="brand" href="index.html">
-          <span class="brand-mark">MS</span>
-          <span class="brand-name">Sadman Shabab<span>Full Stack Developer</span></span>
+          <img src="/assets/logo-2.png" alt="Md. Sadman Al Islam Shabab" class="brand-logo" />
+          <span class="brand-name">Md. Sadman Al Islam Shabab<span>Full Stack Developer</span></span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
           ${navItems
@@ -59,6 +60,7 @@
           </div>
           <div class="footer-meta">
             <span>&copy; <span id="year"></span> Md. Sadman Al Islam Shabab</span>
+            <a href="changelog.html">Changelog</a>
             <span>Built from scratch, no templates</span>
           </div>
         </div>

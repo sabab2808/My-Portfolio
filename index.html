@@ -32,11 +32,13 @@
           <div class="hero-photo-row">
             <div class="hero-photo hero-photo--lg">
               <img
-                src="assets/profile.png"
+                src="/assets/profile-1.jpg"
                 alt="Md. Sadman Al Islam Shabab"
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
               />
-              <div class="hero-photo-fallback">MS</div>
+              <div class="hero-photo-fallback">
+                <img src="/assets/profile-1.jpg" alt="Md. Sadman Al Islam Shabab">
+              </div>
             </div>
             <div class="hero-photo-copy">
               <strong class="hero-photo-name">Md. Sadman Al Islam Shabab</strong>
@@ -92,8 +94,8 @@
               <h3>System status: shipping</h3>
               <p>A live snapshot of how the pieces connect — frontend to API, API to database, deployed and monitored.</p>
               <div class="console-stats">
-                <div><strong>4+</strong><span>Projects</span></div>
-                <div><strong>3+</strong><span>Leadership</span></div>
+                <div><strong>10+</strong><span>Projects</span></div>
+                <div><strong>10+</strong><span>Leadership</span></div>
                 <div><strong>100%</strong><span>Growth</span></div>
               </div>
             </div>
@@ -258,6 +260,46 @@
         </div>
       </section>
 
+      <!-- GALLERY -->
+      <section class="section">
+        <div class="section-head reveal">
+          <p class="eyebrow">Gallery</p>
+          <h2>A few frames from the journey.</h2>
+          <p>Snapshots from projects, events, and the everyday work behind the portfolio.</p>
+        </div>
+
+        <div class="gallery-console reveal">
+          <div class="console-bar">
+            <span></span><span></span><span></span>
+            <span class="console-bar-label">gallery.view</span>
+          </div>
+
+          <div class="gallery-viewport" tabindex="0" aria-roledescription="carousel" aria-label="Photo gallery">
+            <div class="gallery-track">
+              <figure class="gallery-slide">
+                <img src="/assets/hult-1.jpg" alt="Md. Sadman Al Islam Shabab" loading="lazy" />
+                <figcaption>Md. Sadman Al Islam Shabab</figcaption>
+              </figure>
+              <figure class="gallery-slide gallery-slide--placeholder">
+                <div class="gallery-placeholder-icon">+</div>
+                <figcaption>Add a photo</figcaption>
+                <img src="/assets/icpc-1.jpg" alt="ICPC picture-01" srcset="">
+              </figure>
+              <figure class="gallery-slide gallery-slide--placeholder">
+                <div class="gallery-placeholder-icon">+</div>
+                <figcaption>Add a photo</figcaption>
+                <img src="/assets/bdoi-1.jpg" alt="BdOI picture-01" srcset="">
+              </figure>
+            </div>
+
+            <button class="gallery-arrow gallery-arrow--prev" type="button" aria-label="Previous photo">&larr;</button>
+            <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next photo">&rarr;</button>
+          </div>
+
+          <div class="gallery-dots" role="tablist" aria-label="Choose photo"></div>
+        </div>
+      </section>
+
       <!-- FEATURED PROJECTS -->
       <section class="section">
         <div class="section-head reveal">
@@ -267,7 +309,7 @@
         <div class="project-grid">
           <article class="panel project-card reveal">
             <h3>HostelMania</h3>
-            <p>A full-stack hostel food management platform for ordering meals, managing users, and supporting campus operations with a modern interface.</p>
+            <p>A hostel food ordering system with 2 user roles (student, staff), built solo across one semester — from database schema to a deployed, working application.</p>
             <div class="project-tags"><span>Full Stack</span><span>PHP</span><span>MySQL</span></div>
             <div class="project-actions">
               <a href="projects.html">View details</a>

@@ -132,6 +132,43 @@
       <section class="case-section">
         <div class="case-section-label reveal">
           <span class="step">04</span>
+          <h2 style="margin: 0;">A closer look at the code</h2>
+        </div>
+        <p class="hero-text reveal" style="max-width: 720px; margin-bottom: 24px;">
+          The pattern below is representative of how role checks work throughout the backend —
+          re-verified server-side on every request, never trusted from the client. It's the
+          direct fix for the auth bug described in
+          <a href="notes.html" style="color: var(--accent-strong);">my build notes</a>.
+        </p>
+        <div class="code-panel reveal">
+          <pre><code><span class="tok-cm">// order.controller.php — updating an order's status</span>
+<span class="tok-cm">// the UI only shows this action to staff, but the server</span>
+<span class="tok-cm">// re-checks the session role independently, every time.</span>
+<span class="tok-kw">function</span> <span class="tok-fn">updateOrderStatus</span>(<span class="tok-str">$orderId</span>, <span class="tok-str">$newStatus</span>) {
+    <span class="tok-str">$session</span> = <span class="tok-fn">getCurrentSession</span>();
+
+    <span class="tok-kw">if</span> (<span class="tok-str">$session</span>-&gt;role !== <span class="tok-str">'staff'</span>) {
+        <span class="tok-kw">return</span> <span class="tok-fn">respond</span>(<span class="tok-number">403</span>, <span class="tok-str">'Not authorized to update orders.'</span>);
+    }
+
+    <span class="tok-str">$order</span> = <span class="tok-fn">Order</span>::<span class="tok-fn">find</span>(<span class="tok-str">$orderId</span>);
+
+    <span class="tok-kw">if</span> (!<span class="tok-str">$order</span> || <span class="tok-str">$order</span>-&gt;payment_status !== <span class="tok-str">'paid'</span>) {
+        <span class="tok-cm">// an order can't move to "preparing" unless payment</span>
+        <span class="tok-cm">// already confirmed — no half-updated states.</span>
+        <span class="tok-kw">return</span> <span class="tok-fn">respond</span>(<span class="tok-number">409</span>, <span class="tok-str">'Order is not in a valid state.'</span>);
+    }
+
+    <span class="tok-str">$order</span>-&gt;<span class="tok-fn">transitionTo</span>(<span class="tok-str">$newStatus</span>);
+    <span class="tok-kw">return</span> <span class="tok-fn">respond</span>(<span class="tok-number">200</span>, <span class="tok-str">$order</span>);
+}</code></pre>
+          <div class="code-note">This is a representative reconstruction of the real pattern, written to be readable outside the full codebase — the actual file has more validation around it.</div>
+        </div>
+      </section>
+
+      <section class="case-section">
+        <div class="case-section-label reveal">
+          <span class="step">05</span>
           <h2 style="margin: 0;">Outcome &amp; what I learned</h2>
         </div>
         <div class="case-outcome-grid">

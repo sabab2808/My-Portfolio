@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Changelog | Md. Sadman Al Islam Shabab</title>
+    <meta name="description" content="Build history of this portfolio site." />
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="changelog">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
+
+    <div id="site-header"></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-head reveal is-visible">
+          <p class="eyebrow">Changelog</p>
+          <h1>This site's own build history.</h1>
+          <p class="hero-text">
+            A portfolio about building software should probably be versioned like software.
+            This is the real sequence this site was built in — including the bugs.
+          </p>
+        </div>
+
+        <div class="changelog-list reveal">
+          <div class="changelog-entry">
+            <div class="changelog-version">v1.4<span>Current</span></div>
+            <div class="changelog-body">
+              <h3>Substance pass</h3>
+              <p>Added build notes, a real code sample, a site changelog (this page), and grounded project copy in concrete facts instead of adjectives.</p>
+              <div class="changelog-tags"><span>content</span><span>credibility</span></div>
+            </div>
+          </div>
+
+          <div class="changelog-entry">
+            <div class="changelog-version">v1.3</div>
+            <div class="changelog-body">
+              <h3>Photo, carousel, and a layout bug fix</h3>
+              <p>Added a real profile photo across the hero, About, and Contact pages, plus a photo carousel on the homepage. Fixed a genuine reflow bug where the typed hero text was shifting the whole page as it cycled through role strings — solved by reserving fixed height for the longest possible wrap.</p>
+              <div class="changelog-tags"><span>bugfix</span><span>content</span></div>
+            </div>
+          </div>
+
+          <div class="changelog-entry">
+            <div class="changelog-version">v1.2</div>
+            <div class="changelog-body">
+              <h3>Command palette, status bar, spotlight glow</h3>
+              <p>Added a ⌘K command palette for navigation and quick actions, a persistent status bar, and cursor-tracked spotlight lighting on panel hover.</p>
+              <div class="changelog-tags"><span>feature</span></div>
+            </div>
+          </div>
+
+          <div class="changelog-entry">
+            <div class="changelog-version">v1.1</div>
+            <div class="changelog-body">
+              <h3>Real WebGL, and a real bug</h3>
+              <p>Replaced the 2D canvas hero graphic and skill icons with actual Three.js scenes. Shipped a version where the icon renderer cleared to opaque black by default and blanked entire pages — found, reproduced, and fixed by explicitly setting a transparent clear color.</p>
+              <div class="changelog-tags"><span>feature</span><span>bugfix</span></div>
+            </div>
+          </div>
+
+          <div class="changelog-entry">
+            <div class="changelog-version">v1.0</div>
+            <div class="changelog-body">
+              <h3>Full redesign</h3>
+              <p>Rebuilt from the original template-style layout into the current "systems console" identity — copper/signal-green palette, monospace data labels, 3D tilt, and the HostelMania case study page.</p>
+              <div class="changelog-tags"><span>redesign</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

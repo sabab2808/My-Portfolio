@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notes | Md. Sadman Al Islam Shabab</title>
+    <meta name="description" content="Build notes and technical reflections from Md. Sadman Al Islam Shabab's projects." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body data-page="notes">
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+    <canvas id="bg-scene-canvas"></canvas>
+    <canvas id="icon-scene-canvas"></canvas>
+
+    <div id="site-header"></div>
+
+    <main class="page-shell">
+      <section class="section">
+        <div class="section-head reveal is-visible">
+          <p class="eyebrow">Notes</p>
+          <h1>Build notes, not a highlight reel.</h1>
+          <p class="hero-text">
+            Short, honest write-ups on decisions I made building HostelMania — including the
+            ones I'd make differently now. I'd rather show the reasoning than just the result.
+          </p>
+        </div>
+
+        <div class="log-list">
+          <article class="log-entry panel reveal">
+            <div class="log-entry-meta">
+              <span>Architecture</span>
+              <time datetime="2025">2025</time>
+            </div>
+            <h2>Why MySQL, not MongoDB, for HostelMania's order data</h2>
+            <p>
+              Food ordering is fundamentally relational: a student belongs to a hostel, an order
+              belongs to a student and a menu item, and a payment belongs to an order. Every one
+              of those relationships needed to stay consistent — an order should never reference
+              a menu item that's been removed, and a payment should never exist without a matching
+              order. That's exactly the kind of integrity foreign keys and transactions are built
+              for, and it's the kind of thing you have to re-implement by hand in a document store.
+            </p>
+            <p>
+              MongoDB would have been the trendier choice, and I considered it early on. But I
+              wasn't building something with unpredictable, evolving document shapes — I was
+              building something with a small, stable set of entities and strict rules about how
+              they relate. <strong>The interesting design problem wasn't schema flexibility, it was
+              correctness</strong> — making sure a canceled order can't silently still show as paid, that
+              kind of thing. MySQL made that the default behavior instead of something I had to
+              build myself.
+            </p>
+          </article>
+
+          <article class="log-entry panel reveal">
+            <div class="log-entry-meta">
+              <span>Bug</span>
+              <time datetime="2025">2025</time>
+            </div>
+            <h2>The auth bug that taught me not to trust client-side role checks</h2>
+            <p>
+              Early in HostelMania, the staff dashboard link was simply hidden from students via
+              CSS and a client-side <code>if (role === 'staff')</code> check in the UI. It worked, in the
+              sense that students never saw the button. It did not work in the sense that mattered
+              — the actual API endpoint behind that button had no idea who was calling it. Anyone
+              who found the URL, or opened dev tools and hit the endpoint directly, could have
+              called it.
+            </p>
+            <p>
+              Nothing bad happened, because I caught it before it went anywhere near real users —
+              but it's the kind of mistake that's invisible until you specifically go looking for
+              it, because the UI itself looks completely correct. <strong>Since then, my rule is
+              simple: the UI hides options, the server enforces them.</strong> Every role-gated
+              route in the backend now re-checks the session role independently of whatever the
+              frontend already decided to show. It's a small habit, but it's the one bug from this
+              project I think about the most.
+            </p>
+          </article>
+
+          <article class="log-entry panel reveal">
+            <div class="log-entry-meta">
+              <span>Retrospective</span>
+              <time datetime="2025">2025</time>
+            </div>
+            <h2>What I'd rebuild in HostelMania if I started today</h2>
+            <p>
+              Two things, honestly. First, I'd write tests for the order-status transitions before
+              writing the transitions themselves. I didn't, because it was a solo project on a
+              semester deadline and testing felt like overhead I couldn't afford — but I ended up
+              manually re-testing the same order flow by hand every time I touched that code,
+              which was slower in total than just writing the tests once would have been.
+            </p>
+            <p>
+              Second, I'd separate the payment confirmation logic from the order-update logic much
+              earlier. I built them tangled together because it was faster in the moment, and then
+              spent real time later untangling them so a failed payment couldn't leave an order in
+              a half-updated state. <strong>Both of these are the same lesson wearing different
+              clothes: the shortcut that feels fast on day one is rarely the one that's still fast
+              on day thirty.</strong> It's a lesson I now try to apply before I need to re-learn it
+              on the next project.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="closing-cta reveal">
+          <div class="closing-copy">
+            <p class="eyebrow">Read more</p>
+            <h2>Want the fuller story behind HostelMania?</h2>
+            <p>The case study covers the architecture and features in more depth.</p>
+          </div>
+          <div class="closing-actions">
+            <a class="btn btn-primary" href="project-hostelmania.html">Read the case study</a>
+            <a class="btn btn-secondary" href="contact.html">Ask me about it</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="site-footer"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="shared-layout.js"></script>
+    <script src="three-scene.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
