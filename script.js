@@ -479,7 +479,7 @@ const projects = [
       'A hostel food ordering system built solo, one semester, 2 user roles (student and staff) — from database schema through to a deployed application.',
     category: 'Full Stack',
     tags: ['PHP', 'MySQL', 'JavaScript', 'HTML', 'CSS'],
-    status: 'Final Year Project',
+    status: 'Personal Project',
     date: '2025',
     features: ['Secure authentication', 'Role-based access control', 'Order tracking', 'Payment integration', 'Responsive design'],
     github: 'https://github.com/sabab2808/HostelMania2.0',

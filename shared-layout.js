@@ -61,7 +61,6 @@
           <div class="footer-meta">
             <span>&copy; <span id="year"></span> Md. Sadman Al Islam Shabab</span>
             <a href="changelog.html">Changelog</a>
-            <span>Built from scratch, no templates</span>
           </div>
         </div>
       </footer>

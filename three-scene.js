@@ -1,14 +1,10 @@
 /* ==========================================================================
    Shared WebGL layer.
-   Two canvases, two renderers:
-     - #bg-scene-canvas   : a single ambient particle field behind everything
-     - #icon-scene-canvas : ONE renderer shared by every 3D icon slot on the
-                             page, using the scissor/viewport technique so we
-                             never open more than two WebGL contexts no
-                             matter how many icons a page has.
-   Icon slots are plain empty <div class="icon3d" data-icon="key"> elements;
-   this file finds them, builds a tiny scene for each, and renders it into
-   that element's on-screen rectangle every frame.
+     - #bg-scene-canvas : a single ambient particle field behind everything
+     - every <canvas class="icon3d" data-icon="key"> on the page gets its
+       own real WebGL context, positioned by normal CSS/DOM layout (not a
+       JS-tracked overlay), so it scrolls perfectly in sync with the page —
+       no per-frame position bookkeeping, no scroll lag.
    ========================================================================== */
 
 (function () {
@@ -324,31 +320,73 @@
     requestAnimationFrame(loop);
   }
 
-  /* ---------------- shared icon renderer (scissor multiplexed) ---------------- */
+  /* ---------------- 3D icons: native per-element canvases ----------------
+     Each .icon3d IS a <canvas>, positioned by normal CSS layout like any
+     other element. Because the browser scrolls it as part of the page's own
+     compositor layer (not a JS-tracked overlay), there is no per-frame
+     getBoundingClientRect()/scissor bookkeeping to fall behind during
+     scroll — it is structurally immune to the lag that technique caused. */
 
   function initIcons() {
-    const canvas = document.getElementById('icon-scene-canvas');
-    const slots = document.querySelectorAll('.icon3d[data-icon]');
-    if (!canvas || !slots.length) return;
-
-    const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
-    renderer.setClearColor(0x000000, 0);
-    renderer.setScissorTest(true);
+    const slots = Array.from(document.querySelectorAll('canvas.icon3d[data-icon]'));
+    if (!slots.length) return;
 
     const registry = [];
-    slots.forEach((el) => {
-      const key = el.dataset.icon;
+
+    slots.forEach((canvas) => {
+      const key = canvas.dataset.icon;
       if (!ICONS[key]) return;
+
+      let renderer;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      } catch (err) {
+        return; // context creation failed — leave the CSS fallback background visible
+      }
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+      renderer.setClearColor(0x000000, 0);
+
       const instance = ICONS[key]();
-      registry.push({ el, ...instance });
+      registry.push({ canvas, renderer, ...instance, visible: true });
     });
 
-    function resize() {
-      renderer.setSize(window.innerWidth, window.innerHeight, false);
+    if (!registry.length) return;
+
+    function resizeOne(entry) {
+      const width = entry.canvas.clientWidth;
+      const height = entry.canvas.clientHeight;
+      if (width < 2 || height < 2) return;
+      entry.renderer.setSize(width, height, false);
+      entry.camera.aspect = width / height;
+      entry.camera.updateProjectionMatrix();
     }
-    resize();
-    window.addEventListener('resize', resize);
+
+    registry.forEach(resizeOne);
+
+    let resizePending = false;
+    window.addEventListener('resize', () => {
+      if (resizePending) return;
+      resizePending = true;
+      requestAnimationFrame(() => {
+        registry.forEach(resizeOne);
+        resizePending = false;
+      });
+    });
+
+    // Pause rendering for icons scrolled well out of view — saves GPU/battery
+    // without needing to reposition anything (the canvas stays put natively).
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            const entry = registry.find((r) => r.canvas === e.target);
+            if (entry) entry.visible = e.isIntersecting;
+          });
+        },
+        { rootMargin: '200px 0px 200px 0px' }
+      );
+      registry.forEach((entry) => io.observe(entry.canvas));
+    }
 
     let running = true;
     document.addEventListener('visibilitychange', () => {
@@ -358,30 +396,12 @@
 
     function loop(t) {
       if (!running) return;
-      renderer.setScissorTest(false);
-      renderer.clear();
-      renderer.setScissorTest(true);
-
       registry.forEach((entry) => {
-        const rect = entry.el.getBoundingClientRect();
-        if (rect.bottom < -50 || rect.top > window.innerHeight + 50 || rect.width < 2 || rect.height < 2) return;
-
-        const width = rect.width;
-        const height = rect.height;
-        const left = rect.left;
-        const bottom = window.innerHeight - rect.bottom;
-
-        renderer.setViewport(left, bottom, width, height);
-        renderer.setScissor(left, bottom, width, height);
-        entry.camera.aspect = width / height;
-        entry.camera.updateProjectionMatrix();
+        if (!entry.visible) return;
         entry.update(t);
-        renderer.render(entry.scene, entry.camera);
+        entry.renderer.render(entry.scene, entry.camera);
       });
-
-      if (!prefersReducedMotion) {
-        requestAnimationFrame(loop);
-      }
+      if (!prefersReducedMotion) requestAnimationFrame(loop);
     }
 
     requestAnimationFrame(loop);
@@ -401,10 +421,10 @@
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
       safeInit(initBackground, 'bg-scene-canvas');
-      safeInit(initIcons, 'icon-scene-canvas');
+      safeInit(initIcons);
     });
   } else {
     safeInit(initBackground, 'bg-scene-canvas');
-    safeInit(initIcons, 'icon-scene-canvas');
+    safeInit(initIcons);
   }
 })();
