@@ -1280,13 +1280,6 @@ p {
   );
 }
 
-.gallery-slide--placeholder figcaption {
-  position: static;
-  background: transparent;
-  border: none;
-  backdrop-filter: none;
-}
-
 .gallery-placeholder-icon {
   display: grid;
   place-items: center;
