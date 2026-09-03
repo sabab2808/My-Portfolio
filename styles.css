@@ -2714,8 +2714,12 @@ p {
   }
 
   .endpoint-row {
-    grid-template-columns: 34px auto 1fr;
+    grid-template-columns: 34px auto minmax(0, 1fr);
     padding: 12px 16px;
+  }
+
+  .endpoint-value {
+    min-width: 0;
   }
 
   .endpoint-action {

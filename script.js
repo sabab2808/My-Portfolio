@@ -17,7 +17,7 @@ const applyTheme = (theme) => {
 };
 
 const savedTheme = localStorage.getItem('portfolio-theme');
-if (savedTheme) {
+if (savedTheme === 'light' || savedTheme === 'dark') {
   applyTheme(savedTheme);
 } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
   applyTheme('light');
@@ -642,7 +642,7 @@ if (form && successMessage) {
 
     if (!name || !email || !message) {
       successMessage.textContent = 'Please fill in all fields before sending.';
-      successMessage.style.color = '#e3a857';
+      successMessage.style.color = 'var(--accent)';
       successMessage.style.display = 'block';
       return;
     }
