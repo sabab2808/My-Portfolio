@@ -17,7 +17,7 @@ const applyTheme = (theme) => {
 };
 
 const savedTheme = localStorage.getItem('portfolio-theme');
-if (savedTheme === 'light' || savedTheme === 'dark') {
+if (savedTheme) {
   applyTheme(savedTheme);
 } else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
   applyTheme('light');
@@ -634,7 +634,7 @@ const form = document.querySelector('form[data-contact-form]');
 const successMessage = document.querySelector('.form-status');
 
 if (form && successMessage) {
-  form.addEventListener('submit', (event) => {
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
     const name = form.querySelector('input[name="name"]').value.trim();
     const email = form.querySelector('input[name="email"]').value.trim();
@@ -642,15 +642,49 @@ if (form && successMessage) {
 
     if (!name || !email || !message) {
       successMessage.textContent = 'Please fill in all fields before sending.';
-      successMessage.style.color = 'var(--accent)';
+      successMessage.style.color = '#e3a857';
       successMessage.style.display = 'block';
       return;
     }
 
-    successMessage.textContent = `Thanks, ${name} — your message is ready to send. Reach out directly at shabab23105101104@diu.edu.bd if this form isn't connected to an inbox yet.`;
+    const submitButton = form.querySelector('button[type="submit"]');
+    submitButton.disabled = true;
+    successMessage.textContent = 'Sending your message...';
     successMessage.style.color = '';
     successMessage.style.display = 'block';
-    form.reset();
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, message }),
+      });
+      const responseText = await response.text();
+      let result = {};
+
+      if (!responseText) {
+        if (response.status === 404) {
+          throw new Error('The contact service is unavailable on this host. Deploy the site to Vercel to enable messages.');
+        }
+        throw new Error(`The contact service returned an empty response (HTTP ${response.status}). Please try again later.`);
+      }
+
+      try {
+        result = JSON.parse(responseText);
+      } catch (parseError) {
+        throw new Error('The contact service returned an invalid response. Please try again later.');
+      }
+
+      if (!response.ok) throw new Error(result.error || 'Unable to send your message.');
+
+      successMessage.textContent = `Thanks, ${name} — your message has been sent.`;
+      form.reset();
+    } catch (error) {
+      successMessage.textContent = error.message;
+      successMessage.style.color = '#e3a857';
+    } finally {
+      submitButton.disabled = false;
+    }
   });
 }
 
@@ -847,11 +881,11 @@ if (clockEl) {
     },
     {
       group: 'Actions',
-      label: 'Download resume',
-      hint: '.txt',
+      label: 'Download CV',
+      hint: '.pdf',
       run: () => {
         const a = document.createElement('a');
-        a.href = 'assets/resume.txt';
+        a.href = 'assets/CV%20OF%20Md.%20Sadman%20Al%20Islam%20Shabab.pdf';
         a.download = '';
         document.body.appendChild(a);
         a.click();

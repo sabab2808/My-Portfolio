@@ -50,13 +50,39 @@
     const scene = makeScene();
     const camera = makeCamera();
     const group = new THREE.Group();
-    const mesh = new THREE.Mesh(
-      new THREE.TorusKnotGeometry(0.72, 0.22, 110, 14),
-      new THREE.MeshStandardMaterial({ color: COPPER, metalness: 0.4, roughness: 0.35, emissive: 0x2a1a06, emissiveIntensity: 0.35 })
+    const languages = [0xf7df1e, 0x3776ab, 0xe44d26, 0x2965f1];
+    const tiles = languages.map((color, index) => {
+      const tile = new THREE.Mesh(
+        new THREE.BoxGeometry(0.72, 0.72, 0.16),
+        new THREE.MeshStandardMaterial({ color, metalness: 0.25, roughness: 0.38 })
+      );
+      const angle = index * (Math.PI / 2) + Math.PI / 4;
+      tile.position.set(Math.cos(angle) * 0.62, Math.sin(angle) * 0.62, index * 0.08);
+      tile.rotation.z = index % 2 ? -0.12 : 0.12;
+      group.add(tile);
+      return tile;
+    });
+
+    const core = new THREE.Mesh(
+      new THREE.BoxGeometry(0.7, 0.7, 0.3),
+      new THREE.MeshStandardMaterial({ color: COPPER, metalness: 0.45, roughness: 0.3, emissive: 0x2a1a06, emissiveIntensity: 0.3 })
     );
-    group.add(mesh);
+    core.rotation.z = Math.PI / 4;
+    group.add(core);
+    group.rotation.x = 0.35;
+    group.rotation.y = -0.25;
     scene.add(group);
-    return { scene, camera, update: (t) => { group.rotation.y = t * 0.00035; group.rotation.x = Math.sin(t * 0.0004) * 0.3; } };
+    return {
+      scene,
+      camera,
+      update: (t) => {
+        group.rotation.y = -0.25 + Math.sin(t * 0.00045) * 0.28;
+        group.rotation.x = 0.35 + Math.sin(t * 0.00035) * 0.12;
+        tiles.forEach((tile, index) => {
+          tile.position.z = index * 0.08 + Math.sin(t * 0.001 + index) * 0.04;
+        });
+      },
+    };
   };
 
   ICONS.layers = () => {
